@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Walify"
         tools:targetApi="31">
         <activity
+            android:name=".ui.EditActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.SavedActivity"
             android:exported="false" />
         <activity
