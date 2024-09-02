@@ -11,18 +11,19 @@ import com.example.walify.databinding.ActivitySavedBinding
 import com.example.walify.viewmodel.SavedViewModel
 
 class SavedActivity : AppCompatActivity() {
-    var binding: ActivitySavedBinding? = null
+    private var binding: ActivitySavedBinding? = null
     private val savedViewModel by viewModels<SavedViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySavedBinding.inflate(layoutInflater)
         setContentView(binding?.root!!)
-        savedViewModel.getSavedPhotos(this)
-        // Observe the photos LiveData
-        savedViewModel.savedPhotos.observe(this, Observer { response ->
-            Log.d("TAG", "savedPhotos: ${response?.size}")
-            val savedAdapter = response?.let { SavedAdapter(it) }
+
+
+        savedViewModel.getSavedPhotos(this)?.observe(this) {
+            val savedAdapter = it?.let { SavedAdapter(it) }
             binding?.recyclerview?.adapter = savedAdapter
-        })
+        }
+
     }
 }

@@ -8,4 +8,9 @@
     <string name="result_could_not_be_loaded">Result could not be loaded</string>
     <string name="download_image">Download Image</string>
     <string name="saved_images">Saved Images</string>
+    <string name="sepia">Sepia</string>
+    <string name="original">Original</string>
+    <string name="b_amp_w"><![CDATA[B&W]]></string>
+    <string name="gray_scale">Gray Scale</string>
+    <string name="saved">Saved</string>
 </resources>

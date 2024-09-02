@@ -1,19 +1,17 @@
 package com.example.walify.utils
 
 import android.app.Activity
+import android.app.WallpaperManager
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
-import android.view.animation.Transformation
+import android.os.Build
 import android.widget.Toast
 import coil.ImageLoader
 import coil.request.ErrorResult
 import coil.request.ImageRequest
 import coil.request.SuccessResult
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.CustomTarget
-import com.bumptech.glide.request.transition.Transition
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
@@ -43,7 +41,7 @@ fun Activity.getBitmapFromUrl(imageUrl: String): Bitmap? {
 fun urlToBitmap(
     imageURL: String,
     context: Context,
-    transformation: Transformation? = null,
+    transformation: coil.transform.Transformation? = null,
     onSuccess: (bitmap: Bitmap) -> Unit,
     onError: (error: Throwable) -> Unit
 ) {
@@ -52,7 +50,7 @@ fun urlToBitmap(
         val loader = ImageLoader(context)
         val request = ImageRequest.Builder(context)
             .data(imageURL)
-            //.transformations(transformation?:DefaultTransformation())
+            .transformations(transformation ?: DefaultTransformation())
             .allowHardware(false)
             .build()
         val result = loader.execute(request)
@@ -81,4 +79,18 @@ fun Context.saveImageToCacheStorage(bitmap: Bitmap): String {
     fileOutputStream.flush()
     fileOutputStream.close()
     return file.path
+}
+
+fun setWallpaper(context: Context, bitmap: Bitmap, flagSystem: Int) {
+    val wallpaperManager = WallpaperManager.getInstance(context)
+    try {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            wallpaperManager.setBitmap(bitmap,null,true,flagSystem)
+        }else{
+            wallpaperManager.setBitmap(bitmap)
+        }
+    } catch (e: Exception) {
+        e.printStackTrace()
+        // Handle the exception (e.g., show an error message)
+    }
 }

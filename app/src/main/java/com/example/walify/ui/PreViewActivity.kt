@@ -2,11 +2,11 @@ package com.example.walify.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.bumptech.glide.Glide
 import com.example.walify.dataBase.AppDatabase
 import com.example.walify.dataBase.savePhoto
 import com.example.walify.databinding.ActivityPreViewBinding
 import com.example.walify.model.Photo
+import com.example.walify.utils.DefaultTransformation
 import com.example.walify.utils.WALLPAPER_OBJ
 import com.example.walify.utils.saveImageToCacheStorage
 import com.example.walify.utils.showToast
@@ -25,8 +25,17 @@ class PreViewActivity : AppCompatActivity() {
         setContentView(binding?.root!!)
         database = AppDatabase.getDataBase(this@PreViewActivity)
         photo = intent.getSerializableExtra(WALLPAPER_OBJ) as? Photo
-        binding?.imgpreview?.let {
-            Glide.with(this@PreViewActivity).load(photo?.src?.large).into(it)
+
+        photo?.let {
+            urlToBitmap(
+                it.src.original,
+                this@PreViewActivity,
+                transformation = DefaultTransformation(),
+                onSuccess = { bitmap ->
+                    binding?.imgpreview?.setImageBitmap(bitmap)
+                },
+                onError = {})
+
         }
 
         binding?.btnDownload?.setOnClickListener {

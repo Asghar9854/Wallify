@@ -1,5 +1,6 @@
 package com.example.walify.dataBase
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -12,5 +13,5 @@ interface PhotoDao {
     suspend fun insertPhoto(savePhoto: savePhoto)
 
     @Query("SELECT * FROM saved_images")
-    suspend fun getAllPhotos(): List<savePhoto>
+    fun getAllPhotos(): LiveData<List<savePhoto>>
 }

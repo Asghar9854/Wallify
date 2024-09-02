@@ -4,10 +4,8 @@ import android.content.Context
 import com.example.walify.dataBase.AppDatabase
 import com.example.walify.dataBase.savePhoto
 
-class SavedRepository(private var context: Context) {
+class SavedRepository() {
 
-    suspend fun getSavedPhotos(): List<savePhoto> {
-        val photoDao = AppDatabase.getDataBase(context).photoDao()
-        return photoDao.getAllPhotos()
-    }
+     fun getSavedPhotos(context: Context) = AppDatabase.getDataBase(context).photoDao().getAllPhotos()
+
 }
