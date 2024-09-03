@@ -66,6 +66,9 @@ dependencies {
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.activity:activity:1.9.1")
+    implementation("androidx.compose.runtime:runtime-livedata:1.6.8")
+    implementation("androidx.navigation:navigation-runtime-ktx:2.7.7")
+    implementation("androidx.navigation:navigation-compose:2.7.7")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
@@ -102,8 +105,8 @@ dependencies {
     implementation("androidx.room:room-ktx:2.6.1")
 
 
-  //  implementation("io.coil-kt:coil-compose:2.7.0")
-    implementation("io.coil-kt:coil:2.7.0")
-   // implementation("io.coil-kt:coil-transformations:2.4.0")
+    implementation("io.coil-kt:coil-compose:2.7.0")
+    //implementation("io.coil-kt:coil:2.7.0")
+    // implementation("io.coil-kt:coil-transformations:2.4.0")
 
 }

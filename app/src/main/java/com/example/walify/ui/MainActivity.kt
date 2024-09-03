@@ -2,24 +2,24 @@ package com.example.walify.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import com.example.walify.adapter.WallpapersAdapter
 import com.example.walify.databinding.ActivityMainBinding
-import com.example.walify.repository.MainRepository
+import com.example.walify.utils.hide
+import com.example.walify.utils.isNetworkAvailable
 import com.example.walify.utils.pixelApiKey
+import com.example.walify.utils.show
 import com.example.walify.viewmodel.MainViewModel
-import com.example.walify.viewmodel.MainViewModelFactory
 
 class MainActivity : AppCompatActivity() {
 
     private var wallpapersAdapter: WallpapersAdapter? = null
 
-    private val viewModel: MainViewModel by viewModels {
-        MainViewModelFactory(MainRepository())
-    }
+    private val viewModel: MainViewModel by viewModels<MainViewModel>()
     var binding: ActivityMainBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,23 +27,20 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding?.root!!)
 
-        // Observe the photos LiveData
-        viewModel.apiResponse.observe(this, Observer { response ->
-            wallpapersAdapter = WallpapersAdapter(response.photos)
-            binding?.recyclerview?.adapter = wallpapersAdapter
-        })
-
-        val apiKey = pixelApiKey
-        val query = "nature"
-        val perPage = 16
-
-        viewModel.wallpapers(apiKey, query, perPage)
+        if (isNetworkAvailable()) {
+            binding?.tvnointernet?.hide()
+            fetchApiData()
+        } else {
+            binding?.progressbar?.hide()
+            binding?.tvnointernet?.show()
+        }
 
         binding?.searchview?.let { searchView ->
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     if (!query.isNullOrEmpty()) {
-                        viewModel.wallpapers(apiKey, query, perPage)
+                        binding?.progressbar?.visibility = View.VISIBLE
+                        viewModel.wallpapers(pixelApiKey, query, 16)
                     }
 
                     searchView.setQuery("", false)
@@ -61,5 +58,20 @@ class MainActivity : AppCompatActivity() {
         binding?.btnsaved?.setOnClickListener {
             startActivity(Intent(this@MainActivity, SavedActivity::class.java))
         }
+        // Observe the photos LiveData
+
+    }
+
+    fun fetchApiData() {
+        viewModel.apiResponse.observe(this, Observer { response ->
+            binding?.progressbar?.visibility = View.GONE
+            wallpapersAdapter = WallpapersAdapter(response.photos)
+            binding?.recyclerview?.adapter = wallpapersAdapter
+        })
+
+        val apiKey = pixelApiKey
+        val query = "nature"
+        val perPage = 16
+        viewModel.wallpapers(apiKey, query, perPage)
     }
 }

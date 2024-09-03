@@ -11,21 +11,21 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:scrollbars="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
+            android:paddingHorizontal="16dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/btnDefaultFilter"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="16dp"
-                android:background="@color/teal_200"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/original"
                 app:layout_constraintStart_toStartOf="parent"
@@ -33,10 +33,9 @@
 
             <Button
                 android:id="@+id/btnSepiaFilter"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:background="@color/teal_200"
                 android:gravity="center"
                 android:text="@string/sepia"
                 app:layout_constraintStart_toStartOf="parent"
@@ -44,10 +43,9 @@
 
             <Button
                 android:id="@+id/btnBlackWhiteFilter"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:background="@color/teal_200"
                 android:gravity="center"
                 android:text="@string/b_amp_w"
                 app:layout_constraintStart_toStartOf="parent"
@@ -55,10 +53,9 @@
 
             <Button
                 android:id="@+id/btnGrayScaleFilter"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:background="@color/teal_200"
                 android:gravity="center"
                 android:text="@string/gray_scale"
                 app:layout_constraintStart_toStartOf="parent"
@@ -66,78 +63,71 @@
 
             <Button
                 android:id="@+id/btnContrastFilter"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:background="@color/teal_200"
                 android:gravity="center"
-                android:text="Contrast"
+                android:text="@string/contrast"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/btnCoolFilter"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:background="@color/teal_200"
                 android:gravity="center"
-                android:text="Cool"
+                android:text="@string/cool"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/btnBrightFilter"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:background="@color/teal_200"
                 android:gravity="center"
-                android:text="Bright"
+                android:text="@string/bright"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/btnInvertFilter"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:background="@color/teal_200"
                 android:gravity="center"
-                android:text="Invert"
+                android:text="@string/invert"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/btSaturationFilter"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:background="@color/teal_200"
                 android:gravity="center"
-                android:text="Saturation"
+                android:text="@string/saturation"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/btnVintageFilter"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:background="@color/teal_200"
                 android:gravity="center"
-                android:text="Vintage"
+                android:text="@string/vintage"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/btnWarmFilter"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:background="@color/teal_200"
                 android:gravity="center"
-                android:text="Warm"
+                android:text="@string/warm"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -151,6 +141,7 @@
         android:id="@+id/imgv_edit"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:scaleType="fitXY"
         android:layout_marginVertical="10dp"
         app:layout_constraintBottom_toTopOf="@+id/ln_apply"
         app:layout_constraintEnd_toEndOf="parent"
@@ -163,6 +154,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="3"
+        android:paddingHorizontal="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -170,20 +162,21 @@
         <Button
             android:id="@+id/btnSaveEdits"
             android:layout_width="0dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="8dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:singleLine="true"
-            android:text="Save Edits" />
+            android:text="Save Edits"
+            android:textSize="8sp" />
 
         <Button
             android:id="@+id/btnAppyHOme"
             android:layout_width="0dp"
-            android:layout_height="70dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_weight="1"
             android:singleLine="true"
             android:text="Set Home Wallpaper"
+            android:textSize="8sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -191,11 +184,12 @@
         <Button
             android:id="@+id/btnApplyLock"
             android:layout_width="0dp"
-            android:layout_height="70dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_weight="1"
             android:singleLine="true"
             android:text="Set Lock Wallpaper"
+            android:textSize="8sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

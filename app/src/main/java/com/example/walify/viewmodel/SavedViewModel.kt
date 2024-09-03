@@ -5,12 +5,6 @@ import androidx.lifecycle.ViewModel
 import com.example.walify.repository.SavedRepository
 
 class SavedViewModel : ViewModel() {
-    private var repository: SavedRepository? = null
-    init {
-        repository = SavedRepository()
-
-    }
-    fun getSavedPhotos(context: Context) = repository?.getSavedPhotos(context)
-
-
+    private var repository: SavedRepository = SavedRepository()
+    fun getSavedPhotos(context: Context) = repository.getSavedPhotos(context)
 }
